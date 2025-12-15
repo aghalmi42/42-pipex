@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 17:54:20 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/14 19:23:45 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/15 16:47:56 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,21 @@ char	**path(char **envp)
 
 char	*find_cmd_path(char *cmd, char **path)
 {
-	int	i;
+	int		i;
+	char	*full_path;
+	char	*tmp;
+
+	i = 0;
+	if (ft_strchr(cmd, '/'))
+		return (cmd);
+	while (path[i])
+	{
+		tmp = ft_strjoin(path[i], "/");
+		full_path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(full_path, X_OK) == 0)
+			return (full_path);
+		i++;
+	}
+	return (NULL);
 }

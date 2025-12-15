@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:10:46 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/14 19:21:28 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/15 17:18:02 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ int	main(int ac, char **av, char **envp)
 	data.path = path(envp);
 	if (!data.path)
 		error("PATH is not found\n");
+	open_file(&data);
+	create_pipe(&data);
+	exec_pipex(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/13 06:33:45 by aghalmi           #+#    #+#              #
-#    Updated: 2025/12/14 18:01:13 by aghalmi          ###   ########.fr        #
+#    Updated: 2025/12/15 16:46:26 by aghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ SRCS_DIR		= srcs
 
 SRCS		= $(SRCS_DIR)/main.c \
 			  $(SRCS_DIR)/error.c \
-			  $(SRCS_DIR)/path.c
+			  $(SRCS_DIR)/path.c \
+			  $(SRCS_DIR)/files.c \
+			  $(SRCS_DIR)/pipe.c \
+			  $(SRCS_DIR)/exec.c 
 
 OBJS		= $(SRCS:.c=.o)
 
