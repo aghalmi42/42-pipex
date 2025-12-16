@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 16:15:29 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/16 14:25:52 by aghalmi          ###   ########.fr       */
+/*   Created: 2025/12/16 14:18:20 by aghalmi           #+#    #+#             */
+/*   Updated: 2025/12/16 14:23:41 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	open_file(t_pipex *data)
+void	free_tab(char **tab)
 {
-	data->infile = open(data->filename, O_RDONLY);
-	if (data->infile == -1)
-		perror(data->filename);
-	data->outfile = open(data->fileout, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (data->outfile == -1)
-		perror(data->fileout);
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	free_child(t_pipex *data)
+{
+	if (data->cmd)
+	{
+		if (data->cmd[0])
+			free_tab(data->cmd[0]);
+		if (data->cmd[1])
+			free_tab(data->cmd[1]);
+		free(data->cmd);
+	}
+	if (data->path)
+		free_tab(data->path);
 }

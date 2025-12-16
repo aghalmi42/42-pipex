@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:12:52 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/15 16:49:08 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:24:28 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void		open_file(t_pipex *data);
 void		create_pipe(t_pipex *data);
 void		exec_child1(t_pipex *data);
 void		exec_child2(t_pipex *data);
-void		exec_pipex(t_pipex *data);
+int			exec_pipex(t_pipex *data);
+void		free_tab(char **tab);
+void		free_child(t_pipex *data);
 #endif
