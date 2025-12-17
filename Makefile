@@ -6,7 +6,7 @@
 #    By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/13 06:33:45 by aghalmi           #+#    #+#              #
-#    Updated: 2025/12/16 14:24:50 by aghalmi          ###   ########.fr        #
+#    Updated: 2025/12/17 19:42:15 by aghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,20 @@ SRCS		= $(SRCS_DIR)/main.c \
 			  $(SRCS_DIR)/pipe.c \
 			  $(SRCS_DIR)/exec.c  \
 			  $(SRCS_DIR)/free.c
+
+SRCS_BONUS  = $(SRCS_DIR)/main.c \
+			  $(SRCS_DIR)/error.c \
+			  $(SRCS_DIR)/path.c \
+			  $(SRCS_DIR)/files.c \
+			  $(SRCS_DIR)/pipe.c \
+			  $(SRCS_DIR)/exec.c  \
+			  $(SRCS_DIR)/free.c \
+			  $(SRCS_DIR)/exec_bonus.c \
+			  $(SRCS_DIR)/exec_bonus2.c \
+			  $(SRCS_DIR)/execute_bonus.c \
+			  $(SRCS_DIR)/heredoc.c \
+			  $(SRCS_DIR)/parsing.c
+
 
 OBJS		= $(SRCS:.c=.o)
 

@@ -1,0 +1,5 @@
+finir dimplementer heredoc proprement et sans leak
+finir de remanier le parsing
+link
+remanier le main
+personaliser makefile et regler souci

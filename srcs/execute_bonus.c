@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   execute_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 14:18:20 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 19:34:15 by aghalmi          ###   ########.fr       */
+/*   Created: 2025/12/17 18:44:24 by aghalmi           #+#    #+#             */
+/*   Updated: 2025/12/17 18:49:29 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	free_tab(char **tab)
+static void	free_pipe(int **pipes, int n_pipe)
 {
 	int	i;
 
 	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	while (i < n_pipe)
 	{
-		free(tab[i]);
+		free(pipes[i]);
 		i++;
 	}
-	free(tab);
+	free(pipes);
 }
 
-void	free_child(t_pipex *data)
+int	exec_pipex_bonus(t_pipex *data)
 {
-	int	i;
+	int		**pipes;
+	pid_t	pid;
+	int		exit_code;
 
-	if (data->cmd)
-	{
-		i = 0;
-		while (i < data->n_cmd)
-		{
-			if (data->cmd[i])
-				free_tab(data->cmd[i]);
-			i++;
-		}
-		free(data->cmd);
-	}
-	if (data->path)
-		free_tab(data->path);
+	pipes = create_all_pipes(data->n_cmd - 1);
+	pid = create_all_processus(data, pipes);
+	close_parent(data, pipes);
+	exit_code = wait_child(pid, data->n_cmd);
+	free_pipe(pipes, data->n_cmd - 1);
+	free(pid);
+	return (exit_code);
 }

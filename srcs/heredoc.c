@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 14:18:20 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 19:34:15 by aghalmi          ###   ########.fr       */
+/*   Created: 2025/12/17 18:51:37 by aghalmi           #+#    #+#             */
+/*   Updated: 2025/12/17 19:00:26 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	free_tab(char **tab)
+static int	check_limiter(char *line, char *limiter)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	len = ft_strlen(limiter);
+	if (ft_strncmp(line, limiter, len) == 0)
 	{
-		free(tab[i]);
-		i++;
+		if (line[len] == '\n')
+			return (1);
 	}
-	free(tab);
+	return (0);
 }
 
-void	free_child(t_pipex *data)
+static void	read_heredoc(int pipe_fd, char *limiter)
 {
-	int	i;
+	char	*line;
 
-	if (data->cmd)
+	line = get_next_line(STDIN_FILENO);
+	while (line)
 	{
-		i = 0;
-		while (i < data->n_cmd)
+		if (check_limiter(line, limiter))
 		{
-			if (data->cmd[i])
-				free_tab(data->cmd[i]);
-			i++;
+			free(line);
+			break ;
 		}
-		free(data->cmd);
+		write(pipe_fd, line, ft_strlen(line));
+		free(line);
+		line = get_next_line(STDIN_FILENO);
 	}
-	if (data->path)
-		free_tab(data->path);
 }
+
