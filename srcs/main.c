@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:10:46 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/18 19:10:02 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/18 19:20:46 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av, char **envp)
 	t_pipex	data;
 	int		cmd_start;
 
-	if (ac >= 2 && ft_strncmp(av[1], "here_doc", 9))
+	if (ac >= 2 && ft_strncmp(av[1], "here_doc", 9) == 0)
 		init_heredoc(&data, ac, av);
 	else
 		init_manda(&data, ac, av);
