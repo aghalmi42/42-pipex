@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:25:18 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 18:40:36 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:04:20 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	**create_all_pipe(int n_pipe)
 		pipes[i] = malloc(sizeof(int) * 2);
 		if (!pipes[i])
 			error("Fail malloc pipe");
-		if (pipe(pipes[i] == -1))
+		if (pipe(pipes[i]) == -1)
 			error("Fail to create pipe");
 		i++;
 	}
 	return (pipes);
 }
 
-pid_t	create_all_processus(t_pipex *data, int **pipes)
+pid_t	*create_all_processus(t_pipex *data, int **pipes)
 {
 	pid_t	*pid;
 	int		i;

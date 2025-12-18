@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 19:00:45 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 19:29:44 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/18 10:41:11 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ void	init_manda(t_pipex *data, int ac, char **av)
 	if (ac < 5)
 		error("ERROR\nUsage : ./pipex file1 cmd1 cmd2 ... file2");
 	data->heredoc = 0;
+	data->limiter = NULL;
+	data->filename = av[1];
+	data->fileout = av[ac - 1];
+	data->n_cmd = ac - 3;
+}
+
+void	init_heredoc(t_pipex *data, int ac, char **av)
+{
+	if (ac < 5)
+		error("ERROR\nUsage ./pipex file1 cmd1 cmd2 ... file2");
+	data->heredoc = 2;
 	data->limiter = NULL;
 	data->filename = av[1];
 	data->fileout = av[ac - 1];

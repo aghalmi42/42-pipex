@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:12:52 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 19:36:12 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:00:33 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include "../libft/libft.h"
+# include "../libft/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -46,11 +47,14 @@ int			exec_pipex(t_pipex *data);
 void		free_tab(char **tab);
 void		free_child(t_pipex *data);
 void		execute_cmd(t_pipex *data, int i, int **pipes);
-int			**create_all_pipes(int n_pipe);
-pid_t		create_all_processus(t_pipex *data, int **pipes);
+int			**create_all_pipe(int n_pipe);
+pid_t		*create_all_processus(t_pipex *data, int **pipes);
 void		close_parent(t_pipex *data, int **pipes);
 int			wait_child(pid_t *pid, int n_cmd);
 int			exec_pipex_bonus(t_pipex *data);
+int			here_doc(char *limiter);
+void		open_file_heredoc(t_pipex *data);
 void		parsing_cmd(t_pipex *data, char **av, int cmd_start);
 void		init_manda(t_pipex *data, int ac, char **av);
+void		init_heredoc(t_pipex *data, int ac, char **av);
 #endif

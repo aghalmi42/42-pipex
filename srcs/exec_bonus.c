@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:08:43 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/17 18:24:17 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/18 19:12:33 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static void	redirect_output(t_pipex *data, int i, int **pipes)
 
 static void	close_pipe(int **pipes, int n_pipe)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (j < n_pipe)
+	i = 0;
+	while (i < n_pipe)
 	{
-		close(pipes[j][0]);
-		close(pipes[j][1]);
-		j++;
+		close(pipes[i][0]);
+		close(pipes[i][1]);
+		i++;
 	}
 }
 
@@ -59,7 +59,7 @@ static void	exec_cmd(t_pipex *data, int i, int **pipes, char *cmd_path)
 		free_child(data);
 		exit(127);
 	}
-	execve(cmd_path, data->cmd[1], data->env);
+	execve(cmd_path, data->cmd[i], data->env);
 	free(cmd_path);
 	free_child(data);
 	perror("execve");
