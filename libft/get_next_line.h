@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 20:50:54 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/11/27 00:16:37 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/19 11:03:30 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000000000000
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);

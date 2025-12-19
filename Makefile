@@ -6,7 +6,7 @@
 #    By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/13 06:33:45 by aghalmi           #+#    #+#              #
-#    Updated: 2025/12/18 19:07:27 by aghalmi          ###   ########.fr        #
+#    Updated: 2025/12/19 11:13:41 by aghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = srcs/main.c \
        srcs/files.c \
        srcs/pipe.c \
        srcs/exec.c \
+       srcs/exec_utils.c \
        srcs/free.c \
        srcs/parsing.c \
        srcs/heredoc.c \
@@ -38,6 +39,7 @@ SRCS_BONUS = srcs/main.c \
              srcs/files.c \
              srcs/pipe.c \
              srcs/exec.c \
+             srcs/exec_utils.c \
              srcs/heredoc.c \
              srcs/parsing.c
 

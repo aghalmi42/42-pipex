@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 16:22:45 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/16 14:17:34 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/19 11:13:16 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,14 @@
 
 void	exec_child1(t_pipex *data)
 {
-	char	*cmd_path;
-
-	if (data->infile != -1)
-		dup2(data->infile, STDIN_FILENO);
-	else
-		close(STDIN_FILENO);
-	dup2(data->fd[1], STDOUT_FILENO);
-	close(data->fd[0]);
-	close(data->fd[1]);
-	if (data->infile != -1)
-		close(data->infile);
-	if (data->outfile != -1)
-		close(data->outfile);
-	cmd_path = find_cmd_path(data->cmd[0][0], data->path);
-	if (!cmd_path)
-	{
-		write(2, data->cmd[0][0], ft_strlen(data->cmd[0][0]));
-		write(2, "cmd not found\n", 14);
-		free_child(data);
-		exit(127);
-	}
-	execve(cmd_path, data->cmd[0], data->env);
-	free(cmd_path);
-	free_child(data);
-	perror("execve");
-	exit(126); // cmd trv mais pas executable
+	setup_child1(data);
+	exec_command(data, data->cmd[0], 0);
 }
 
 void	exec_child2(t_pipex *data)
 {
-	char	*cmd_path;
-
-	dup2(data->fd[0], STDIN_FILENO);
-	if (data->outfile != -1)
-		dup2(data->outfile, STDOUT_FILENO);
-	close(data->fd[0]);
-	close(data->fd[1]);
-	if (data->infile != -1)
-		close(data->infile);
-	if (data->outfile != -1)
-		close(data->outfile);
-	cmd_path = find_cmd_path(data->cmd[1][0], data->path);
-	if (!cmd_path)
-	{
-		write(2, data->cmd[1][0], ft_strlen(data->cmd[1][0]));
-		write(2, "cmd not found\n", 14);
-		free_child(data);
-		exit(127);
-	}
-	execve(cmd_path, data->cmd[1], data->env);
-	free(cmd_path);
-	free_child(data);
-	perror("execve");
-	exit(126);
+	setup_child2(data);
+	exec_command(data, data->cmd[1], 1);
 }
 
 int	exec_pipex(t_pipex *data)
@@ -88,12 +42,7 @@ int	exec_pipex(t_pipex *data)
 		error("Fail fork\n");
 	if (pid2 == 0)
 		exec_child2(data);
-	close(data->fd[0]);
-	close(data->fd[1]);
-	if (data->infile != -1)
-		close(data->infile);
-	if (data->outfile != -1)
-		close(data->outfile);
+	close_parent_fd(data);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, &status, 0);
 	if (WIFEXITED(status))

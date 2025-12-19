@@ -6,15 +6,15 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:12:52 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/12/18 12:00:33 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/19 11:12:30 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -57,4 +57,8 @@ void		open_file_heredoc(t_pipex *data);
 void		parsing_cmd(t_pipex *data, char **av, int cmd_start);
 void		init_manda(t_pipex *data, int ac, char **av);
 void		init_heredoc(t_pipex *data, int ac, char **av);
+void		setup_child1(t_pipex *data);
+void		setup_child2(t_pipex *data);
+void		close_parent_fd(t_pipex *data);
+void		exec_command(t_pipex *data, char **cmd, int cmd_index);
 #endif

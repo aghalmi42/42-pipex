@@ -6,7 +6,7 @@
 /*   By: aghalmi <aghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:40:11 by aghalmi           #+#    #+#             */
-/*   Updated: 2025/11/12 13:35:20 by aghalmi          ###   ########.fr       */
+/*   Updated: 2025/12/19 11:15:27 by aghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	i = -1;
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
-	if (!dest && src) // doit pas y avoir ca car ca doit crash selon le man
+	if (!dest && src)
 		return (NULL);
 	if (d < s)
 	{
